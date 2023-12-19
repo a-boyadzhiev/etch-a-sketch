@@ -7,9 +7,9 @@ function getRandomColor() {
       color += letters[Math.floor(Math.random() * 16)];
     }
     return color;
-  }
+}
 
-  function createGrid(size) {
+function createGrid(size) {
     removeGrid();
     const boxSize = 100 / size; // Adjust this value based on your container size
   
@@ -29,6 +29,28 @@ function getRandomColor() {
         smallBox.style.backgroundColor = getRandomColor();
       });
     }
-  }
+}
   
-  createGrid(16);
+createGrid(16);
+
+function removeGrid() {
+while (container.firstChild) {
+    container.removeChild(container.firstChild);
+}
+}
+  
+function getInput() {
+    const sizeChange = prompt('Enter number of squares per side!(MAX=100)');
+    const newSize = parseInt(sizeChange);
+  
+    if (!isNaN(newSize) && newSize > 0 && newSize <= 100) {
+      createGrid(newSize);
+    } else {
+      alert('Please enter a valid number!');
+    }
+}
+  
+const change = document.querySelector('#change');
+change.addEventListener('click', () => {
+    getInput();
+})
